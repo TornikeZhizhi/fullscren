@@ -1,38 +1,20 @@
-console.log("e")
+let touchstartX = 0
+let touchendX = 0
+    
+function checkDirection() {
+  if (touchendX < touchstartX) alert('swiped left!')
+  if (touchendX > touchstartX) alert('swiped right!')
+}
 
-function handleTouchStart(evt) {
-    const firstTouch = getTouches(evt)[0];                                      
-    xDown = firstTouch.clientX;                                      
-    yDown = firstTouch.clientY;                                      
-  };                                                
-                                                                         
-  function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
-  
-    var xUp = evt.touches[0].clientX;                                    
-    var yUp = evt.touches[0].clientY;
-  
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-                                                                         
-    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
-            /* right swipe */ 
-            alert("right")
-          } else {
-          alert("left")
-            /* left swipe */
-        }                       
-    } else {
-        if ( yDiff > 0 ) {
-            /* down swipe */ 
-        } else { 
-            /* up swipe */
-        }                                                                 
-    }
-    /* reset values */
-    xDown = null;
-    yDown = null;                                             
-  };
+document.getElementById("test").addEventListener('touchstart', e => {
+    alert("s")
+  touchstartX = e.changedTouches[0].screenX
+})
+
+document.getElementById("test").addEventListener('touchend', e => {
+  touchendX = e.changedTouches[0].screenX
+  checkDirection()
+})
+
+
+document.getElementById("test").addEventListener('touchstart', (event) => {alert("ff")});
